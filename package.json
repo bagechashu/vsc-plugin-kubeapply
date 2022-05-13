@@ -1,10 +1,15 @@
 {
-	"name": "kubernetesapply",
+	"name": "kubeApply",
 	"displayName": "Kubernetes Apply",
-	"description": "Apply and Delete Kubernetes resource files",
+	"description": "Apply/Diff/Delete Kubernetes resource files",
 	"version": "0.0.1",
-	"publisher": "ShaiMendel",
-	"keywords": ["kubernetes", "apply", "yaml", "kubectl"],
+	"publisher": "bashu",
+	"keywords": [
+		"kubernetes",
+		"apply",
+		"yaml",
+		"kubectl"
+	],
 	"icon": "images/apply.png",
 	"engines": {
 		"vscode": "^1.43.0"
@@ -13,31 +18,41 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:kubernetesapply.apply",
-		"onCommand:kubernetesapply.delete"
+		"onCommand:kubeApply.apply",
+		"onCommand:kubeApply.diff",
+		"onCommand:kubeApply.delete"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "kubernetesapply.apply",
-				"title": "K8S: Apply resource"
+				"command": "kubeApply.apply",
+				"title": "K8S: Apply"
 			},
 			{
-				"command": "kubernetesapply.delete",
-				"title": "K8S: Delete resource"
+				"command": "kubeApply.diff",
+				"title": "K8S: Diff"
+			},
+			{
+				"command": "kubeApply.delete",
+				"title": "K8S: Delete"
 			}
 		],
 		"menus": {
 			"explorer/context": [
 				{
-					"command": "kubernetesapply.apply",
-					"group": "kubernetesapplygroup@1",
+					"command": "kubeApply.apply",
+					"group": "kubeApplygroup@1",
 					"when": "resourceExtname == .yaml"
 				},
 				{
-					"command": "kubernetesapply.delete",
-					"group": "kubernetesapplygroup@2",
+					"command": "kubeApply.diff",
+					"group": "kubeApplygroup@1",
+					"when": "resourceExtname == .yaml"
+				},
+				{
+					"command": "kubeApply.delete",
+					"group": "kubeApplygroup@2",
 					"when": "resourceExtname == .yaml"
 				}
 			]
@@ -83,6 +98,6 @@
 	"private": true,
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/shaimendel/vscode-plugin-cicd-github-actions.git"
-  }
+		"url": "https://github.com/bagechashu/vscode-plugin-cicd-github-actions.git"
+	}
 }
