@@ -2,7 +2,7 @@
 	"name": "kubeApply",
 	"displayName": "Kubernetes Apply",
 	"description": "Apply/Diff/Delete Kubernetes resource files",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"publisher": "bashu",
 	"keywords": [
 		"kubernetes",

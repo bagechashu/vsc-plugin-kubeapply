@@ -22,8 +22,27 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
 
+    let sp: string = ` && `;
+    let infoEcho: string = `echo -e "\n \\033[42m[ ${command.toUpperCase()} ]`;
+    let warnEcho: string = `echo -e "\n \\033[41m[ ${command.toUpperCase()} ]`;
+    let endEcho: string = `\\033[0m will execute after 5s, \\033[;36;4m[Ctrl+c]\\033[0m to cancel"`;
+    let wait5Min: string = `for i in $(seq 5); do  echo "." && sleep 1 ; done`;
+    let kubeApplyCmd: string = `kubectl ${command} -f ${resourcePath}`;
+
     const terminal = selectTerminal();
-    terminal.sendText(`kubectl ${command} -f ${resourcePath}`);
+
+    if (command === "diff") {
+      terminal.sendText(kubeApplyCmd);
+    } else if (command === "delete") {
+      terminal.sendText(
+        `${warnEcho}${endEcho} ${sp} ${wait5Min} ${sp} ${kubeApplyCmd}`
+      );
+    } else {
+      terminal.sendText(
+        `${infoEcho}${endEcho} ${sp} ${wait5Min} ${sp} ${kubeApplyCmd}`
+      );
+    }
+
   }
 
   let disposableApply = vscode.commands.registerCommand(
