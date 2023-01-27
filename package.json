@@ -38,15 +38,15 @@
 				"title": "K8S: Delete"
 			},
 			{
-				"command": "kubeApply.apply.noWait",
+				"command": "kubeApply.apply-noWait",
 				"title": "K8S: Apply NoWait"
 			},
 			{
-				"command": "kubeApply.apply.kustomize",
+				"command": "kubeApply.apply-kustomize",
 				"title": "K8S: Apply kustomize"
 			},
 			{
-				"command": "kubeApply.diff.kustomize",
+				"command": "kubeApply.diff-kustomize",
 				"title": "K8S: Diff kustomize"
 			}
 		],
