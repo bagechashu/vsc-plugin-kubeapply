@@ -37,8 +37,6 @@ export function activate(context: vscode.ExtensionContext) {
     const terminal = selectTerminal();
     if (!wait) {
       terminal.sendText(kubeApplyCmd);
-    } else if (command === "diff") {
-      terminal.sendText(kubeApplyCmd);
     } else if (command === "delete") {
       terminal.sendText(
         `${warnEcho}${endEcho} ${sp} ${wait5Min} ${sp} ${kubeApplyCmd}`

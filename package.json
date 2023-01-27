@@ -1,5 +1,5 @@
 {
-	"name": "kubeApply",
+	"name": "kubectl-apply",
 	"displayName": "Kubernetes Apply",
 	"description": "Apply/Diff/Delete Kubernetes resource files",
 	"version": "0.0.4",
@@ -27,27 +27,27 @@
 		"commands": [
 			{
 				"command": "kubeApply.apply",
-				"title": "K8S: Apply"
+				"title": "kubectl apply -f after 5 second"
 			},
 			{
 				"command": "kubeApply.diff",
-				"title": "K8S: Diff"
+				"title": "kubectl diff -f"
 			},
 			{
 				"command": "kubeApply.delete",
-				"title": "K8S: Delete"
+				"title": "kubectl delete -f after 5 second"
 			},
 			{
 				"command": "kubeApply.apply-noWait",
-				"title": "K8S: Apply NoWait"
+				"title": "kubectl apply -f"
 			},
 			{
 				"command": "kubeApply.apply-kustomize",
-				"title": "K8S: Apply kustomize"
+				"title": "kubectl apply -k after 5 second"
 			},
 			{
 				"command": "kubeApply.diff-kustomize",
-				"title": "K8S: Diff kustomize"
+				"title": "kubectl diff -k"
 			}
 		],
 		"menus": {
