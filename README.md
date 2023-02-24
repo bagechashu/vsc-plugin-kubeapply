@@ -2,18 +2,18 @@
 
 ## Features
 
-A simple and slim extention to apply and remove yaml files via `kubectl`.
-To apply a yaml file you can:
-- right click on the file + `K8S: Apply resource`
-- run the `K8S: Apply resource` command
+A simple and slim extention to operate yaml files via `kubectl`.
+- right click and select the command to operate yaml or directory. 
+- The prompt before `Apply` and `Delete` is implemented through `echo`. 
 
-To get diff from yaml file you can:
-- right click on the file + `K8S: Diff resource`
-- run the `K8S: Diff resource` command
-
-To delete a yaml file you can:
-- right click on the file + `K8S: Delete resource`
-- run the `K8S: Delete resource` command
+| Command | comment |
+| :--- | :---: |
+| `K8S: Apply` | `sleep 5 && kubectl apply -f [yaml]` |
+| `K8S: Delete` | `sleep 5 && kubectl delete -f [yaml]` |
+| `K8S: Diff` | `kubectl diff -f [yaml]` |
+| `K8S: Apply NoWait` | `kubectl apply -f [yaml\|DIR]` |
+| `K8S: Apply kustomize` | `sleep 5 && kubectl apply -k [yaml\|DIR]` |
+| `K8S: Apply kustomize` | `sleep 5 && kubectl diff -k [yaml\|DIR]` |
 
 ## Requirements
 
