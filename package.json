@@ -2,7 +2,7 @@
 	"name": "kubeApply",
 	"displayName": "Kubernetes Apply",
 	"description": "Apply/Diff/Delete Kubernetes resource files",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"publisher": "bashu",
 	"keywords": [
 		"kubernetes",
@@ -17,11 +17,7 @@
 	"categories": [
 		"Other"
 	],
-	"activationEvents": [
-		"onCommand:kubeApply.apply",
-		"onCommand:kubeApply.diff",
-		"onCommand:kubeApply.delete"
-	],
+	"activationEvents": [],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [

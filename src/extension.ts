@@ -102,7 +102,7 @@ export function deactivate() {}
 
 function ensureTerminalExists(): boolean {
   if ((<any>vscode.window).terminals.length === 0) {
-    vscode.window.showErrorMessage("No active terminals");
+    vscode.window.showErrorMessage("No active terminals. Press [ctrl] + [shift] + [`] to open one");
     return false;
   }
   return true;
