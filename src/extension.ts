@@ -18,11 +18,10 @@ export function activate(context: vscode.ExtensionContext) {
     if (uri !== undefined) {
       resourcePath = uri.fsPath;
     } else if (vscode.window.activeTextEditor !== undefined) {
-      const currentlyOpenTabfilePath =
-        vscode.window.activeTextEditor.document.fileName;
-      resourcePath = path.basename(currentlyOpenTabfilePath);
+      resourcePath = vscode.window.activeTextEditor.document.uri.fsPath;
     }
-
+    console.log(resourcePath);
+    
     if (!ensureTerminalExists()) {
       return;
     }

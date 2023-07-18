@@ -2,7 +2,7 @@
 	"name": "kubeApply",
 	"displayName": "Kubernetes Apply",
 	"description": "Apply/Diff/Delete Kubernetes resource files",
-	"version": "0.0.5",
+	"version": "0.0.7",
 	"publisher": "bashu",
 	"keywords": [
 		"kubernetes",
@@ -46,6 +46,13 @@
 				"title": "kubectl diff -k"
 			}
 		],
+        "keybindings": [
+            {
+                "command": "kubeApply.diff",
+                "key": "ctrl+alt+d",
+                "mac": "shift+cmd+d"
+            }
+        ],
 		"menus": {
 			"explorer/context": [
 				{
