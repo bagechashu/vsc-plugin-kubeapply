@@ -49,7 +49,7 @@
         "keybindings": [
             {
                 "command": "kubeApply.diff",
-                "key": "ctrl+alt+d",
+                "key": "shift+alt+d",
                 "mac": "shift+cmd+d"
             }
         ],
