@@ -2,7 +2,7 @@
 	"name": "kubeApply",
 	"displayName": "Kubernetes Apply",
 	"description": "Apply/Diff/Delete Kubernetes resource files",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"publisher": "bashu",
 	"keywords": [
 		"kubernetes",
@@ -46,13 +46,13 @@
 				"title": "kubectl diff -k"
 			}
 		],
-        "keybindings": [
-            {
-                "command": "kubeApply.diff",
-                "key": "shift+alt+d",
-                "mac": "shift+cmd+d"
-            }
-        ],
+		"keybindings": [
+			{
+				"command": "kubeApply.diff",
+				"key": "shift+alt+d",
+				"mac": "shift+cmd+d"
+			}
+		],
 		"menus": {
 			"explorer/context": [
 				{
@@ -92,7 +92,8 @@
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
 		"test": "",
-		"publish": "vsce publish"
+		"publish": "vsce publish",
+		"package": "vsce package"
 	},
 	"devDependencies": {
 		"@semantic-release/github": "^7.0.5",

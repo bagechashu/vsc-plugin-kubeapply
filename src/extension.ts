@@ -1,51 +1,8 @@
 import * as vscode from "vscode";
-import * as path from "path";
+import { runResourceCommand } from "./kubeapply"
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "kubeApply" is now active!');
-
-  function runResourceCommand(
-    wait: boolean,
-    command: string,
-    args: string,
-    uri: vscode.Uri | undefined
-  ) {
-    if (uri === undefined && vscode.window.activeTextEditor === undefined) {
-      return;
-    }
-
-    let resourcePath = "";
-    if (uri !== undefined) {
-      resourcePath = uri.fsPath;
-    } else if (vscode.window.activeTextEditor !== undefined) {
-      resourcePath = vscode.window.activeTextEditor.document.uri.fsPath;
-    }
-    console.log(resourcePath);
-    
-    if (!ensureTerminalExists()) {
-      return;
-    }
-
-    let sp: string = ` && `;
-    let infoEcho: string = `echo -e "\n \\033[42m[ ${command.toUpperCase()} ]`;
-    let warnEcho: string = `echo -e "\n \\033[41m[ ${command.toUpperCase()} ]`;
-    let endEcho: string = `\\033[0m will execute after 5s, \\033[;36;4m[Ctrl+c]\\033[0m to cancel"`;
-    let wait5Min: string = `for i in $(seq 5); do  echo "." && sleep 1 ; done`;
-    let kubeApplyCmd: string = `kubectl ${command} ${args} ${resourcePath}`;
-
-    const terminal = selectTerminal();
-    if (!wait) {
-      terminal.sendText(kubeApplyCmd);
-    } else if (command === "delete") {
-      terminal.sendText(
-        `${warnEcho}${endEcho} ${sp} ${wait5Min} ${sp} ${kubeApplyCmd}`
-      );
-    } else {
-      terminal.sendText(
-        `${infoEcho}${endEcho} ${sp} ${wait5Min} ${sp} ${kubeApplyCmd}`
-      );
-    }
-  }
 
   let disposableApply = vscode.commands.registerCommand(
     "kubeApply.apply",
@@ -97,16 +54,4 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposableDiffKustomize);
 }
 
-export function deactivate() {}
-
-function ensureTerminalExists(): boolean {
-  if ((<any>vscode.window).terminals.length === 0) {
-    vscode.window.showErrorMessage("No active terminals. Press [ctrl] + [shift] + [`] to open one");
-    return false;
-  }
-  return true;
-}
-
-function selectTerminal(): vscode.Terminal {
-  return <vscode.Terminal>(<any>vscode.window.activeTerminal);
-}
+export function deactivate() { }
