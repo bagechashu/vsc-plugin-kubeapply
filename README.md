@@ -7,13 +7,15 @@ A simple and slim extention to operate yaml files via `kubectl`.
 - The prompt before `Apply` and `Delete` is implemented through `echo`. 
 
 | Command | comment | keybindings |
-| :--- | :---: | :---: |
-| `K8S: Apply` | `sleep 5 && kubectl apply -f [yaml]` |  |
-| `K8S: Delete` | `sleep 5 && kubectl delete -f [yaml]` |  |
-| `K8S: Diff` | `kubectl diff -f [yaml]` | `shift+alt+d / shift+cmd+d` |
+| :--- | :--- | :--- |
 | `K8S: Apply NoWait` | `kubectl apply -f [yaml\|DIR]` |  |
+| `K8S: Apply` | `sleep 5 && kubectl apply -f [yaml]` |  |
 | `K8S: Apply kustomize` | `sleep 5 && kubectl apply -k [yaml\|DIR]` |  |
-| `K8S: Apply kustomize` | `sleep 5 && kubectl diff -k [yaml\|DIR]` |  |
+| `K8S: Diff` | `kubectl diff -f [yaml]` | `ctrl+alt+d / ctrl+cmd+d` |
+| `K8S: Diff kustomize` | `sleep 5 && kubectl diff -k [yaml\|DIR]` |  |
+| `K8S: Delete` | `sleep 5 && kubectl delete -f [yaml]` |  |
+| `K8S: Sync Container` | kubeApply Sync Online container config | `ctrl+alt+d / ctrl+cmd+d` |
+| `K8S: Sync` | kubeApply Sync All Online config adapt YAML |  |
 
 ## Requirements
 

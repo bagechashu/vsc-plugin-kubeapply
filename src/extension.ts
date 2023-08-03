@@ -1,48 +1,66 @@
+// The module 'vscode' contains the VS Code extensibility API
+// Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-import { runResourceCommand } from "./kubeapply"
+import { runKubectlCommand, mergeAndUpdateYaml } from "./kubeapply";
 
+// This method is called when your extension is activated
+// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "kubeApply" is now active!');
 
   let disposableApply = vscode.commands.registerCommand(
     "kubeApply.apply",
     (uri: vscode.Uri) => {
-      runResourceCommand(true, "apply", "-f", uri);
+      runKubectlCommand(true, "apply", "-f", uri);
     }
   );
 
   let disposableDiff = vscode.commands.registerCommand(
     "kubeApply.diff",
     (uri: vscode.Uri) => {
-      runResourceCommand(false, "diff", "-f", uri);
+      runKubectlCommand(false, "diff", "-f", uri);
     }
   );
 
   let disposableDelete = vscode.commands.registerCommand(
     "kubeApply.delete",
     (uri: vscode.Uri) => {
-      runResourceCommand(true, "delete", "-f", uri);
+      runKubectlCommand(true, "delete", "-f", uri);
     }
   );
 
   let disposableApplyNoWait = vscode.commands.registerCommand(
     "kubeApply.apply-noWait",
     (uri: vscode.Uri) => {
-      runResourceCommand(false, "apply", "-f", uri);
+      runKubectlCommand(false, "apply", "-f", uri);
     }
   );
 
   let disposableApplyKustomize = vscode.commands.registerCommand(
     "kubeApply.apply-kustomize",
     (uri: vscode.Uri) => {
-      runResourceCommand(true, "apply", "-k", uri);
+      runKubectlCommand(true, "apply", "-k", uri);
     }
   );
 
   let disposableDiffKustomize = vscode.commands.registerCommand(
     "kubeApply.diff-kustomize",
     (uri: vscode.Uri) => {
-      runResourceCommand(false, "diff", "-k", uri);
+      runKubectlCommand(false, "diff", "-k", uri);
+    }
+  );
+
+  let disposableMergeAndUpdateContainers = vscode.commands.registerCommand(
+    "kubeApply.sync-container",
+    (uri: vscode.Uri) => {
+      mergeAndUpdateYaml(uri, { containerOnly: true });
+    }
+  );
+
+  let disposableMergeAndUpdateAll = vscode.commands.registerCommand(
+    "kubeApply.sync",
+    (uri: vscode.Uri) => {
+      mergeAndUpdateYaml(uri);
     }
   );
 
@@ -52,6 +70,9 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposableApplyNoWait);
   context.subscriptions.push(disposableApplyKustomize);
   context.subscriptions.push(disposableDiffKustomize);
+  context.subscriptions.push(disposableMergeAndUpdateContainers);
+  context.subscriptions.push(disposableMergeAndUpdateAll);
 }
 
+// This method is called when your extension is deactivated
 export function deactivate() { }

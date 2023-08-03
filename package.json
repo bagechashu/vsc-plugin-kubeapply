@@ -1,132 +1,149 @@
 {
-	"name": "kubeApply",
-	"displayName": "Kubernetes Apply",
-	"description": "Apply/Diff/Delete Kubernetes resource files",
-	"version": "0.0.8",
-	"publisher": "bashu",
-	"keywords": [
-		"kubernetes",
-		"apply",
-		"yaml",
-		"kubectl"
-	],
-	"icon": "images/apply.png",
-	"engines": {
-		"vscode": "^1.43.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "kubeApply.apply",
-				"title": "kubectl apply -f after 5 second"
-			},
-			{
-				"command": "kubeApply.diff",
-				"title": "kubectl diff -f"
-			},
-			{
-				"command": "kubeApply.delete",
-				"title": "kubectl delete -f after 5 second"
-			},
-			{
-				"command": "kubeApply.apply-noWait",
-				"title": "kubectl apply -f"
-			},
-			{
-				"command": "kubeApply.apply-kustomize",
-				"title": "kubectl apply -k after 5 second"
-			},
-			{
-				"command": "kubeApply.diff-kustomize",
-				"title": "kubectl diff -k"
-			}
-		],
-		"keybindings": [
-			{
-				"command": "kubeApply.diff",
-				"key": "shift+alt+d",
-				"mac": "shift+cmd+d"
-			}
-		],
-		"menus": {
-			"explorer/context": [
-				{
-					"command": "kubeApply.apply",
-					"group": "kubeApplygroup@1",
-					"when": "resourceExtname == .yaml"
-				},
-				{
-					"command": "kubeApply.diff",
-					"group": "kubeApplygroup@1",
-					"when": "resourceExtname == .yaml"
-				},
-				{
-					"command": "kubeApply.delete",
-					"group": "kubeApplygroup@2",
-					"when": "resourceExtname == .yaml"
-				},
-				{
-					"command": "kubeApply.apply-noWait",
-					"group": "kubeApplygroup@1"
-				},
-				{
-					"command": "kubeApply.apply-kustomize",
-					"group": "kubeApplygroup@1"
-				},
-				{
-					"command": "kubeApply.diff-kustomize",
-					"group": "kubeApplygroup@1"
-				}
-			]
-		}
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint src --ext ts",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"test": "",
-		"publish": "vsce publish",
-		"package": "vsce package"
-	},
-	"devDependencies": {
-		"@semantic-release/github": "^7.0.5",
-		"@types/glob": "^7.1.1",
-		"@types/mocha": "^7.0.2",
-		"@types/node": "^13.11.0",
-		"@types/vscode": "^1.43.0",
-		"@typescript-eslint/eslint-plugin": "^2.26.0",
-		"@typescript-eslint/parser": "^2.26.0",
-		"eslint": "^6.8.0",
-		"glob": "^7.1.6",
-		"mocha": "^7.1.1",
-		"typescript": "^3.8.3",
-		"vscode-test": "^1.3.0"
-	},
-	"release": {
-		"branches": "master",
-		"verifyConditions": [
-			"@semantic-release/github"
-		],
-		"publish": [
-			"@semantic-release/github"
-		],
-		"success": [
-			"@semantic-release/github"
-		],
-		"fail": [
-			"@semantic-release/github"
-		]
-	},
-	"private": true,
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/bagechashu/vscode-plugin-cicd-github-actions.git"
-	}
+  "name": "kubeApply",
+  "displayName": "Kubernetes Apply",
+  "description": "Apply/Diff/Delete Kubernetes resource files",
+  "version": "1.0.0",
+  "publisher": "bashu",
+  "keywords": [
+    "kubernetes",
+    "apply",
+    "yaml",
+    "kubectl"
+  ],
+  "icon": "images/apply.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "kubeApply.apply",
+        "title": "kubectl apply -f after 5 second"
+      },
+      {
+        "command": "kubeApply.diff",
+        "title": "kubectl diff -f"
+      },
+      {
+        "command": "kubeApply.delete",
+        "title": "kubectl delete -f after 5 second"
+      },
+      {
+        "command": "kubeApply.apply-noWait",
+        "title": "kubectl apply -f"
+      },
+      {
+        "command": "kubeApply.apply-kustomize",
+        "title": "kubectl apply -k after 5 second"
+      },
+      {
+        "command": "kubeApply.diff-kustomize",
+        "title": "kubectl diff -k"
+      },
+      {
+        "command": "kubeApply.sync-container",
+        "title": "k8s Sync Online container config"
+      },
+      {
+        "command": "kubeApply.sync",
+        "title": "k8s Sync All Online config"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "kubeApply.diff",
+        "key": "ctrl+alt+d",
+        "mac": "ctrl+cmd+d"
+      },
+      {
+        "command": "kubeApply.sync-container",
+        "key": "ctrl+alt+s",
+        "mac": "ctrl+cmd+s"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "kubeApply.apply",
+          "group": "kubeApplygroup@1",
+          "when": "resourceExtname == .yaml"
+        },
+        {
+          "command": "kubeApply.diff",
+          "group": "kubeApplygroup@1",
+          "when": "resourceExtname == .yaml"
+        },
+        {
+          "command": "kubeApply.delete",
+          "group": "kubeApplygroup@2",
+          "when": "resourceExtname == .yaml"
+        },
+        {
+          "command": "kubeApply.apply-noWait",
+          "group": "kubeApplygroup@1"
+        },
+        {
+          "command": "kubeApply.apply-kustomize",
+          "group": "kubeApplygroup@1"
+        },
+        {
+          "command": "kubeApply.diff-kustomize",
+          "group": "kubeApplygroup@1"
+        },
+        {
+          "command": "kubeApply.sync-container",
+          "group": "kubeApplygroup@3",
+          "when": "resourceExtname == .yaml"
+        },
+        {
+          "command": "kubeApply.sync",
+          "group": "kubeApplygroup@3",
+          "when": "resourceExtname == .yaml"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "vscepackage": " vsce package",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": ""
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "20.2.5",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "@vscode/test-electron": "^2.3.2",
+    "eslint": "^8.41.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "ts-loader": "^9.4.3",
+    "typescript": "^5.1.3",
+    "vscode-test": "^1.6.1",
+    "webpack": "^5.85.0",
+    "webpack-cli": "^5.1.1"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bagechashu/vscode-plugin-cicd-github-actions.git"
+  },
+  "dependencies": {
+    "@kubernetes/client-node": "^0.18.1",
+    "bufferutil": "^4.0.7",
+    "kubectl-sync2local": "^1.1.3",
+    "utf-8-validate": "^6.0.3"
+  }
 }
