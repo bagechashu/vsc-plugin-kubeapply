@@ -4,8 +4,8 @@ import { mergeAndUpdateLocalResources, mergeAndUpdateLocalResourcesContainers } 
 import { KubeConfig } from "@kubernetes/client-node";
 
 // Run kubectl command in terminal.
-export function runKubectlCommand(
-    wait: boolean,
+export async function runKubectlCommand(
+    doubleCheck: boolean | true,
     command: string,
     args: string,
     uri: vscode.Uri | undefined
@@ -16,7 +16,7 @@ export function runKubectlCommand(
         return;
     }
 
-    let sp: string = ` && `;
+    let sp: string = ` && \\\n`;
     let infoEcho: string = `echo -e "\n \\033[42m[ ${command.toUpperCase()} ]`;
     let warnEcho: string = `echo -e "\n \\033[41m[ ${command.toUpperCase()} ]`;
     let endEcho: string = `\\033[0m will execute after 5s, \\033[;36;4m[Ctrl+c]\\033[0m to cancel"`;
@@ -24,17 +24,27 @@ export function runKubectlCommand(
     let kubeCmd: string = `kubectl ${command} ${args} ${resourcePath}`;
 
     const terminal = selectTerminal();
-    if (!wait) {
-        terminal.sendText(kubeCmd);
-    } else if (command === "delete") {
-        terminal.sendText(
-            `${warnEcho}${endEcho} ${sp} ${wait5Min} ${sp} ${kubeCmd}`
-        );
-    } else {
-        terminal.sendText(
-            `${infoEcho}${endEcho} ${sp} ${wait5Min} ${sp} ${kubeCmd}`
-        );
+
+    // Double check before action.
+    if (doubleCheck) {
+        const doubleCheck = await vscode.window.showInformationMessage('Do you want to continue KubeApply Action?', 'Yes', 'No');
+        if (doubleCheck !== 'Yes') {
+            vscode.window.showInformationMessage('KubeApply Action canceled.');
+            return;
+        }
+        // Wait before exec command.
+        kubeCmd = `${wait5Min} ${sp} ${kubeCmd}`;
     }
+
+    // Add Tips before exec command.
+    if (command === "delete") {
+        kubeCmd = `${warnEcho}${endEcho} ${sp} ${kubeCmd}`;
+    } else if (command === "apply") {
+        kubeCmd = `${infoEcho}${endEcho} ${sp} ${kubeCmd}`;
+    }
+
+    terminal.sendText(`${kubeCmd}`);
+
 }
 
 // Merge online resource config to local Yaml

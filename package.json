@@ -2,7 +2,7 @@
   "name": "kubeApply",
   "displayName": "Kubernetes Apply",
   "description": "Apply/Diff/Delete Kubernetes resource files",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "bashu",
   "keywords": [
     "kubernetes",
@@ -32,10 +32,6 @@
       {
         "command": "kubeApply.delete",
         "title": "kubectl delete -f after 5 second"
-      },
-      {
-        "command": "kubeApply.apply-noWait",
-        "title": "kubectl apply -f"
       },
       {
         "command": "kubeApply.apply-kustomize",
@@ -71,12 +67,12 @@
         {
           "command": "kubeApply.apply",
           "group": "kubeApplygroup@1",
-          "when": "resourceExtname == .yaml"
+          "when": "resourceExtname == .yaml || explorerResourceIsFolder"
         },
         {
           "command": "kubeApply.diff",
           "group": "kubeApplygroup@1",
-          "when": "resourceExtname == .yaml"
+          "when": "resourceExtname == .yaml || explorerResourceIsFolder"
         },
         {
           "command": "kubeApply.delete",
@@ -84,16 +80,14 @@
           "when": "resourceExtname == .yaml"
         },
         {
-          "command": "kubeApply.apply-noWait",
-          "group": "kubeApplygroup@1"
-        },
-        {
           "command": "kubeApply.apply-kustomize",
-          "group": "kubeApplygroup@1"
+          "group": "kubeApplygroup@1",
+          "when": "explorerResourceIsFolder"
         },
         {
           "command": "kubeApply.diff-kustomize",
-          "group": "kubeApplygroup@1"
+          "group": "kubeApplygroup@1",
+          "when": "explorerResourceIsFolder"
         },
         {
           "command": "kubeApply.sync-container",

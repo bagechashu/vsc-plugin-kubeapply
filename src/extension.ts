@@ -29,13 +29,6 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  let disposableApplyNoWait = vscode.commands.registerCommand(
-    "kubeApply.apply-noWait",
-    (uri: vscode.Uri) => {
-      runKubectlCommand(false, "apply", "-f", uri);
-    }
-  );
-
   let disposableApplyKustomize = vscode.commands.registerCommand(
     "kubeApply.apply-kustomize",
     (uri: vscode.Uri) => {
@@ -67,7 +60,6 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposableApply);
   context.subscriptions.push(disposableDiff);
   context.subscriptions.push(disposableDelete);
-  context.subscriptions.push(disposableApplyNoWait);
   context.subscriptions.push(disposableApplyKustomize);
   context.subscriptions.push(disposableDiffKustomize);
   context.subscriptions.push(disposableMergeAndUpdateContainers);
