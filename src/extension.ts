@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import { runKubectlCommand, mergeAndUpdateYaml } from "./kubeapply";
+import { runCdCommand } from "./cdhere";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -57,6 +58,13 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  let disposableCdDir = vscode.commands.registerCommand(
+    "dir.cd",
+    (uri: vscode.Uri) => {
+      runCdCommand(uri);
+    }
+  );
+
   context.subscriptions.push(disposableApply);
   context.subscriptions.push(disposableDiff);
   context.subscriptions.push(disposableDelete);
@@ -64,6 +72,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposableDiffKustomize);
   context.subscriptions.push(disposableMergeAndUpdateContainers);
   context.subscriptions.push(disposableMergeAndUpdateAll);
+  context.subscriptions.push(disposableCdDir);
 }
 
 // This method is called when your extension is deactivated

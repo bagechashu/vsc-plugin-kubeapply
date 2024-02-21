@@ -2,7 +2,7 @@
   "name": "kubeApply",
   "displayName": "Kubernetes Apply",
   "description": "Apply/Diff/Delete Kubernetes resource files",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "bashu",
   "keywords": [
     "kubernetes",
@@ -48,6 +48,10 @@
       {
         "command": "kubeApply.sync",
         "title": "k8s Sync All Online config"
+      },
+      {
+        "command": "dir.cd",
+        "title": "cd to this folder"
       }
     ],
     "keybindings": [
@@ -98,6 +102,11 @@
           "command": "kubeApply.sync",
           "group": "kubeApplygroup@3",
           "when": "resourceExtname == .yaml"
+        },
+        {
+          "command": "dir.cd",
+          "group": "kubeApplygroup@4",
+          "when": "explorerResourceIsFolder"
         }
       ]
     }

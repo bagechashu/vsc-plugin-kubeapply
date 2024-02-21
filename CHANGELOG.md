@@ -6,6 +6,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.0.3] - 2024-02-21
+- Add command to cd to the selected folder.
+
 ## [1.0.2] - 2023-09-28
 - Add double check before apply and delete manifest file.
 

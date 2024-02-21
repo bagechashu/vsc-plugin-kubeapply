@@ -15,6 +15,7 @@ A simple and slim extention to operate yaml files via `kubectl`.
 | `K8S: Diff kustomize` | `sleep 5 && kubectl diff -k [DIR]` |  |
 | `K8S: Sync Container` | kubeApply Sync Online container config | `ctrl+shift+alt+s / ctrl+shift+cmd+s` |
 | `K8S: Sync` | kubeApply Sync All Online config adapt YAML |  |
+| `DIR: cd` | cd to selected folder |  |
 
 ## Requirements
 
