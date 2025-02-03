@@ -2,7 +2,7 @@
   "name": "kubeApply",
   "displayName": "Kubernetes Apply",
   "description": "Apply/Diff/Delete Kubernetes resource files",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "bashu",
   "keywords": [
     "kubernetes",
@@ -71,17 +71,17 @@
         {
           "command": "kubeApply.apply",
           "group": "kubeApplygroup@1",
-          "when": "resourceExtname == .yaml || explorerResourceIsFolder"
+          "when": "resourceExtname == .yaml || resourceExtname == .yml || explorerResourceIsFolder"
         },
         {
           "command": "kubeApply.diff",
           "group": "kubeApplygroup@1",
-          "when": "resourceExtname == .yaml || explorerResourceIsFolder"
+          "when": "resourceExtname == .yaml || resourceExtname == .yml || explorerResourceIsFolder"
         },
         {
           "command": "kubeApply.delete",
           "group": "kubeApplygroup@2",
-          "when": "resourceExtname == .yaml"
+          "when": "resourceExtname == .yaml || resourceExtname == .yml"
         },
         {
           "command": "kubeApply.apply-kustomize",
@@ -96,12 +96,12 @@
         {
           "command": "kubeApply.sync-container",
           "group": "kubeApplygroup@3",
-          "when": "resourceExtname == .yaml"
+          "when": "resourceExtname == .yaml || resourceExtname == .yml"
         },
         {
           "command": "kubeApply.sync",
           "group": "kubeApplygroup@3",
-          "when": "resourceExtname == .yaml"
+          "when": "resourceExtname == .yaml || resourceExtname == .yml"
         },
         {
           "command": "dir.cd",
